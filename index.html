@@ -1,88 +1,77 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="reveal.js/css/theme/solarized.css">
-    <link rel="stylesheet" href="css/custom-style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- https://fezvrasta.github.io/bootstrap-material-design/ -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+
+    <script>
+        function print() {
+            var el = document.getElementById('slides')
+            var backup = el.src;
+            console.log(backup);
+            el.src += '?print-pdf';
+            setTimeout(function() {
+                console.log('magic')
+                el.src = backup;
+            }, 1000);
+        }
+    </script>
 </head>
 
 <body>
-    <div class="reveal">
-        <div class="slides">
-            <section>
-                <h1>Narrative comparison</h1>
-                <p>Martino Mensio</p>
-                <p><i>PACE conference</i></p>
-            </section>
-            <section>
-                <h2>Introduction</h2>
-                <div>
-                    <p>blah blah</p>
-                </div>
-            </section>
-            <section>
-                <h2>Orientation</h2>
-                <div>
-                    <ul>
-                        <li>News can be manipulative</li>
-                        <li>News clustering and narrative analysis are DISJOINT</li>
-                        <li>Cross-comparison of narrative has not been studied</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Rationale</h2>
-                <div>
-                    <ul>
-                        <li>Need for tools to compare articles</li>
-                        <li>Reveal manipulation (choices, language strenght)</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Aim</h2>
-                <div>
-                    <ul>
-                        <li>Compare news on same event</li>
-                        <li>Omissions, deletions, manipulation</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Method</h2>
-                <div>
-                    <ul>
-                        <li>NLP techniques (similarity, narrative features)</li>
-                        <li>Gold standards (article cliques, sentiment, framing</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Early Findings</h2>
-                <div>
-                    <ul>
-                        <li>Lots of plagiarism</li>
-                        <li>Need to investigate reason for manipulation / detail choice</li>
-                    </ul>
-                </div>
-            </section>
-            <section>
-                <h2>Interpretation</h2>
-                <div>
-                    <p>blah blah</p>
-                </div>
-            </section>
-            <section>
-                <h3>Thank you!</h3>
-                <a href="https://twitter.com/MartinoMensio?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @MartinoMensio</a>
-            </section>
-        </div>
+    <iframe id="slides" src="#" width="100%" height="640px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="max-width: 100%;" allowfullscreen></iframe>
+    <div class="container">
+        <h1>Slides for the position paper</h1>
+        <button onclick="print();" type="button" class="btn btn-raised primary-color btn-primary">Print</button>
+
+        <form id="slide-selector">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="kmi" value="kmi.html">
+                    KMi presentation
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="pace" value="pace.html">
+                    PACE mini-conference
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="text2story" value="text2story.html">
+                    Text2Story
+                </label>
+            </div>
+
+        </form>
     </div>
-    <script src="reveal.js/js/reveal.js"></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+
     <script>
-        Reveal.initialize();
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+        // initial value
+        // $('#slides').attr('src', 'kmi.html');
+        $('#slide-selector').on('change', function() {
+            var value = $('#slide-selector input:radio:checked').val();
+            console.log(value);
+            $('#slides').attr('src', value);
+        });
+        $('#kmi').click();
     </script>
+
 </body>
 
 </html>
